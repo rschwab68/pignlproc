@@ -108,14 +108,14 @@ public class RestrictedNGramGenerator extends EvalFunc<DataBag> {
         if (this.tokenizer == null) {
             if (new File("./" + TOKENIZER_MODEL_VAR).length() > 10) {
                 try {
-                    this.tokenizer = new OpenNLPStringTokenizer(new TokenizerME(new TokenizerModel(new FileInputStream(new File("./" + TOKENIZER_MODEL_VAR)))), new Stemmer());
+                    this.tokenizer = new OpenNLPStringTokenizer(new TokenizerME(new TokenizerModel(new FileInputStream(new File("./" + TOKENIZER_MODEL_VAR)))), new Stemmer(true));
                 } catch (IOException ignored) {
                     // default to LanguageIndependentStringTokenizer below
                 }
             }
 
             if (this.tokenizer == null) {
-                this.tokenizer = new LanguageIndependentStringTokenizer(this.locale, new Stemmer());
+                this.tokenizer = new LanguageIndependentStringTokenizer(this.locale, new Stemmer(true),null);
             }
         }
     }

@@ -25,7 +25,7 @@ public class TestNGramGenerator {
         InputStream modelIs = this.getClass().getClassLoader().getResourceAsStream("opennlp/en-token.bin");
         StringTokenizer stringTokenizer = new OpenNLPStringTokenizer(
                 new TokenizerME(new TokenizerModel(modelIs)),
-                new Stemmer());
+                new Stemmer(true));
         RestrictedNGramGenerator generator = new RestrictedNGramGenerator(ngramLength, stringTokenizer);
         Tuple inputTuple = tupleFactory.newTuple(testString);
         DataBag resultBag = generator.exec(inputTuple);
